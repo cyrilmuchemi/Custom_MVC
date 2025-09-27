@@ -7,5 +7,6 @@
 </head>
 <body>
     <h1>Products Page View</h1>
+    <img src="<?=ROOT?>/assets/images/how-to-draw-naruto-20.webp" alt="Naruto">
 </body>
 </html>
