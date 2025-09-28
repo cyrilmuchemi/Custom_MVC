@@ -14,7 +14,31 @@ class Database
         }
     }
 
-    public function get_connection(){
+    public function getConnection(){
         return $this->conn;
+    }
+
+    public function query($query, $data = []){
+        $connection = $this->getConnection();
+        $statement = $connection->prepare($query);
+        $success = $statement->execute($data);
+
+        if(!$sucess){
+            return false;
+        }
+
+        if(stripos($query, 'SELECT') === 0){
+            return $statement->fetchAll(PDO::FETCH_OBJ);
+        }else{
+            return $statement->rowCount();
+        }
+
+    /**
+     * Fetch a single row
+     */
+    }
+
+    public function fetchOne(){
+        
     }
 }
