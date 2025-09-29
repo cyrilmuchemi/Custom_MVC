@@ -1,6 +1,6 @@
 <?php
 
-class Database
+Trait Database
 {
     private $conn;
 
@@ -23,7 +23,7 @@ class Database
         $statement = $connection->prepare($query);
         $success = $statement->execute($data);
 
-        if(!$sucess){
+        if(!$success){
             return false;
         }
 
@@ -32,13 +32,18 @@ class Database
         }else{
             return $statement->rowCount();
         }
+    }
 
     /**
      * Fetch a single row
-     */
-    }
+    */
 
-    public function fetchOne(){
+    public function fetchOne($query, $data = []){
+        $connection = $this->getConnection();
+        $statement = $connection->prepare($query);
+        $statement->execute($data);
+
+        return $statement->fetch(PDO::FETCH_OBJ);
         
     }
 }
