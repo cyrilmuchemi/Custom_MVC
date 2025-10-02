@@ -9,3 +9,7 @@ if($_SERVER['SERVER_NAME'] == 'custommvc.local'){
 }else{
     define('ROOT', 'https://www.yourwebsite.com');
 }
+
+define('APP_NAME', "My Website");
+define('APP_DESC', "Best website alive.");
+define('DEBUG', true);
