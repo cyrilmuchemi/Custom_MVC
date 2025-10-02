@@ -6,6 +6,14 @@ Trait Model
 
     protected $limit = 10;
     protected $offset = 0;
+    protected $order_type = "desc";
+    protected $order_column = "id";
+
+    public function findAll(){
+        $query = "SELECT * FROM $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
+
+        return $this->query($query);
+    }
 
     public function where($data, $data_not = []){
         $keys = array_keys($data);
@@ -20,7 +28,7 @@ Trait Model
         }
 
         $query = trim($query, " && ");
-        $query .= " limit $this->limit offset $this->offset";
+        $query .= " order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
 
         $data = array_merge($data, $data_not);
 
